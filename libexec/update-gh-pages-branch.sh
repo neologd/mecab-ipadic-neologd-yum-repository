@@ -46,44 +46,23 @@ function get_rpm_files_num () {
 get_rpm_files_num
 if [ ${RPM_FILE_NUM} -eq 1 ]; then
 
-    if [ ! -e ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository-back/${TARGET_PART_PATH} ]; then
-        echo "${ECHO_PREFIX} Create temporary directory"
-        mkdir -p ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository-back/${TARGET_PART_PATH}
-    fi
-
-    echo "${ECHO_PREFIX} Copy files to temporary directory to backup static files"
-    if [ -f  ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository/* ]; then
-        cp -rf ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository/${TARGET_PART_PATH}/*.rpm   ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository-back/${TARGET_PART_PATH}
-    fi
-
-    git clean -fdx
-    git checkout master
-    git branch -D gh-pages
-    git push origin :gh-pages
-
-    git symbolic-ref HEAD refs/heads/gh-pages
-    rm .git/index
-    git clean -fdx
-
-    cp -rf ${BASEDIR}/../../mecab-ipadic-neologd-gh-page-back/* .
-
     TARGET_YMD=`ls -ltr ${PACKAGE_DIR_PATH}/RPMS/${ARCH_NAME}/mecab-ipadic-neologd-*.rpm | egrep -o '\-[0-9]{8}\-[0-9]{1,}\.'| egrep -o '[0-9]{8}' | head -1`''
     TARGET_YMD_RELEASE=`ls -ltr ${PACKAGE_DIR_PATH}/RPMS/${ARCH_NAME}/mecab-ipadic-neologd-*.rpm | egrep -o '\-[0-9]{8}\-[0-9]{1,}\.'| egrep -o '[0-9]{8}\-[0-9]{1,}' | head -1`
     TARGET_FILE_NAME=mecab-ipadic-neologd-${TARGET_YMD_RELEASE}.${ARCH_NAME}.rpm
     TARGET_FILE_PATH=${TARGET_PART_PATH}/${TARGET_FILE_NAME}
 
     echo "${ECHO_PREFIX} Create repodata files"
-    if [ ! -f ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH} ]; then
-        mkdir -p ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}
+    if [ ! -f ${BASEDIR}/../${TARGET_PART_PATH} ]; then
+        mkdir -p ${BASEDIR}/../${TARGET_PART_PATH}
     fi
 
-    cd ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}
+    cd ${BASEDIR}/../${TARGET_PART_PATH}
     createrepo .
 
-    echo "${ECHO_PREFIX} Put mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm to ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}"
-    cp ${PACKAGE_DIR_PATH}/RPMS/${ARCH_NAME}/mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm  ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}
+    cd ${BASEDIR}/../
 
-    cd ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/
+    echo "${ECHO_PREFIX} Put mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm to ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}"
+    cp ${PACKAGE_DIR_PATH}/RPMS/${ARCH_NAME}/mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm  ${BASEDIR}/../${TARGET_PART_PATH}
 
     echo "${ECHO_PREFIX} git add ${TARGET_FILE_PATH}"
     git add ${TARGET_FILE_PATH}

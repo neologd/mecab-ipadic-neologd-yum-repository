@@ -59,6 +59,20 @@ do
     fi
     ls -sl ${TARGET_FILE_PATH}
 
+    if [ ! -e ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository-back/${TARGET_PART_PATH} ]; then
+        echo "${ECHO_PREFIX} Create temporary directory"
+        mkdir -p ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository-back/${TARGET_PART_PATH}
+    fi
+
+
+    echo "${ECHO_PREFIX} Copy files to temporary directory to backup static files"
+    if [ -f  ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository/* ]; then
+        cp -rf ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository/${TARGET_PART_PATH}/*.rpm   ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository-back/${TARGET_PART_PATH}
+    fi
+
+
+
+
     if [ -e ${TARGET_FILE_PATH} ]; then
         echo "${ECHO_PREFIX} git rm ${TARGET_FILE_PATH}"
         git rm ${TARGET_FILE_PATH}
