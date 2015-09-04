@@ -34,14 +34,14 @@ RPM_FILE_NUM=0
 
 function get_rpm_files_num () {
     echo "${ECHO_PREFIX} Check the number of RPM files."
-    if [ -e ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}/ ]; then
-        RPM_FILE_NUM=`ls -sl ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm | wc -l`
+    if [ -e ${BASEDIR}/../${TARGET_PART_PATH}/ ]; then
+        RPM_FILE_NUM=`ls -sl ${BASEDIR}/../${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm | wc -l`
     fi
     echo ${RPM_FILE_NUM}
 }
 
-cd ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/
-if [ -f ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/.git ]; then
+cd ${BASEDIR}/../
+if [ -f ${BASEDIR}/../.git ]; then
     git checkout gh-pages
 fi
 
@@ -49,8 +49,8 @@ get_rpm_files_num
 WANNA_REMOVE_META_DATA=0
 while [ ${RPM_FILE_NUM} -gt 1 ]
 do
-    TARGET_YMD=`ls -ltr ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm | egrep -o '\-[0-9]{8}\-[0-9]{1,}\.'| egrep -o '[0-9]{8}' | head -1`
-    TARGET_YMD_RELEASE=`ls -ltr ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm | egrep -o '\-[0-9]{8}\-[0-9]{1,}\.'| egrep -o '[0-9]{8}\-[0-9]{1,}' | head -1`
+    TARGET_YMD=`ls -ltr ${BASEDIR}/../${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm | egrep -o '\-[0-9]{8}\-[0-9]{1,}\.'| egrep -o '[0-9]{8}' | head -1`
+    TARGET_YMD_RELEASE=`ls -ltr ${BASEDIR}/../${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm | egrep -o '\-[0-9]{8}\-[0-9]{1,}\.'| egrep -o '[0-9]{8}\-[0-9]{1,}' | head -1`
     TARGET_FILE_NAME=mecab-ipadic-neologd-${TARGET_YMD_RELEASE}.${ARCH_NAME}.rpm
     TARGET_FILE_PATH=${TARGET_PART_PATH}/${TARGET_FILE_NAME}
     if [ ! -f ${TARGET_FILE_PATH} ]; then
@@ -64,14 +64,10 @@ do
         mkdir -p ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository-back/${TARGET_PART_PATH}
     fi
 
-
     echo "${ECHO_PREFIX} Copy files to temporary directory to backup static files"
     if [ -f  ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository/* ]; then
         cp -rf ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository/${TARGET_PART_PATH}/*.rpm   ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository-back/${TARGET_PART_PATH}
     fi
-
-
-
 
     if [ -e ${TARGET_FILE_PATH} ]; then
         echo "${ECHO_PREFIX} git rm ${TARGET_FILE_PATH}"
