@@ -52,11 +52,11 @@ if [ ${RPM_FILE_NUM} -eq 1 ]; then
     TARGET_FILE_PATH=${TARGET_PART_PATH}/${TARGET_FILE_NAME}
 
     echo "${ECHO_PREFIX} Create repodata files"
-    if [ ! -f ${BASEDIR}/../${TARGET_PART_PATH} ]; then
+    if [ ! -e ${BASEDIR}/../${TARGET_PART_PATH} ]; then
         mkdir -p ${BASEDIR}/../${TARGET_PART_PATH}
     fi
 
-    if [ ! -e cd ${BASEDIR}/../${TARGET_PART_PATH}/repodata ]; then
+    if [ ! -e ${BASEDIR}/../${TARGET_PART_PATH}/repodata ]; then
         cd ${BASEDIR}/../${TARGET_PART_PATH}
         createrepo .
         cd ${BASEDIR}/../
