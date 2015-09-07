@@ -25,19 +25,19 @@ TMP_DIR=/var/tmp
 echo "${ECHO_PREFIX} Start."
 
 echo "${ECHO_PREFIX} Update seed data"
-#${BASEDIR}/../../mecab-ipadic-neologd/libexec/copy-dict-seed.sh /home/overlast/git/neologd-seed-maker
+${BASEDIR}/../../mecab-ipadic-neologd/libexec/copy-dict-seed.sh /home/overlast/git/neologd-seed-maker
 
 echo "${ECHO_PREFIX} Create building directory of mecab-ipadic-NEologd"
-#${BASEDIR}/../../mecab-ipadic-neologd/bin/install-mecab-ipadic-neologd --prefix ${TMP_DIR}/mecab-ipadic-neologd-rhel-6 --asuser --forceyes
+${BASEDIR}/../../mecab-ipadic-neologd/bin/install-mecab-ipadic-neologd --prefix ${TMP_DIR}/mecab-ipadic-neologd-rhel-6 --asuser --forceyes
 
 echo "${ECHO_PREFIX} Move to working directory"
 cd ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository
 
 echo "${ECHO_PREFIX} Switch current branch to gh-pages"
-#git checkout gh-pages
+git checkout gh-pages
 
 echo "${ECHO_PREFIX} Get recent update information"
-#git pull origin gh-pages
+git pull origin gh-pages
 
 RELEASE_VERSION=0
 OS_NAME=redhat
@@ -45,7 +45,7 @@ OS_VERSION=6
 ARCH_NAME=x86_64
 
 echo "${ECHO_PREFIX} Build RPM package"
-#${BASEDIR}/../libexec/build-mecab-ipadic-neologd-rpm.sh ${RELEASE_VERSION} ${OS_NAME} ${OS_VERSION} ${ARCH_NAME}
+${BASEDIR}/../libexec/build-mecab-ipadic-neologd-rpm.sh ${RELEASE_VERSION} ${OS_NAME} ${OS_VERSION} ${ARCH_NAME}
 
 echo "${ECHO_PREFIX} Delete old gh-pages branch"
 ${BASEDIR}/../libexec/delete-obsolete-files-from-git-log.sh ${RELEASE_VERSION} ${OS_NAME} ${OS_VERSION} ${ARCH_NAME}
