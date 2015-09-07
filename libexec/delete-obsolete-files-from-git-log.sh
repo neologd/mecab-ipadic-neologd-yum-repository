@@ -46,7 +46,7 @@ if [ -f ${BASEDIR}/../.git ]; then
 fi
 
 get_rpm_files_num
-WANNA_REMOVE_META_DATA=1
+WANNA_REMOVE_META_DATA=0
 while [ ${RPM_FILE_NUM} -gt 0 ]
 do
     TARGET_YMD=`ls -ltr ${BASEDIR}/../${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm | egrep -o '\-[0-9]{8}\-[0-9]{1,}\.'| egrep -o '[0-9]{8}' | head -1`
@@ -65,7 +65,7 @@ do
     fi
 
     echo "${ECHO_PREFIX} Copy files to temporary directory to backup static files"
-    if [ -f  ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository/* ]; then
+    if [ -e  ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository/${TARGET_PART_PATH}/ ]; then
         cp -rf ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository/${TARGET_PART_PATH}/*.rpm   ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository-back/${TARGET_PART_PATH}
     fi
 
