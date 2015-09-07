@@ -48,7 +48,7 @@ echo "${ECHO_PREFIX} Build RPM package"
 #${BASEDIR}/../libexec/build-mecab-ipadic-neologd-rpm.sh ${RELEASE_VERSION} ${OS_NAME} ${OS_VERSION} ${ARCH_NAME}
 
 echo "${ECHO_PREFIX} Delete old gh-pages branch"
-#${BASEDIR}/../libexec/delete-obsolete-files-from-git-log.sh ${RELEASE_VERSION} ${OS_NAME} ${OS_VERSION} ${ARCH_NAME}
+${BASEDIR}/../libexec/delete-obsolete-files-from-git-log.sh ${RELEASE_VERSION} ${OS_NAME} ${OS_VERSION} ${ARCH_NAME}
 
 echo "${ECHO_PREFIX} Create new gh-pages branch"
 ${BASEDIR}/../libexec/update-gh-pages-branch.sh ${RELEASE_VERSION} ${OS_NAME} ${OS_VERSION} ${ARCH_NAME}
