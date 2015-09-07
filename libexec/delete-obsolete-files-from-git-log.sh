@@ -88,7 +88,7 @@ do
     git push --force origin gh-pages
 
     WANNA_REMOVE_META_DATA=1
-    get_rpm_files_num
+    RPM_FILE_NUM=$(( RPM_FILE_NUM - 1 ));
 done
 
 if [ ${WANNA_REMOVE_META_DATA} -eq 1 ]; then
