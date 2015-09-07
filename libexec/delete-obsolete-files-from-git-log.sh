@@ -34,7 +34,7 @@ RPM_FILE_NUM=0
 
 function get_rpm_files_num () {
     echo "${ECHO_PREFIX} Check the number of RPM files."
-    if [ -e ${BASEDIR}/../${TARGET_PART_PATH}/ ]; then
+    if [ -e ${BASEDIR}/../${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm ]; then
         RPM_FILE_NUM=`ls -sl ${BASEDIR}/../${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm | wc -l`
     fi
     echo ${RPM_FILE_NUM}
