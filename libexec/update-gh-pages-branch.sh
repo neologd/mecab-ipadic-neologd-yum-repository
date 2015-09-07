@@ -57,7 +57,7 @@ if [ ${RPM_FILE_NUM} -eq 1 ]; then
     fi
 
     cd ${BASEDIR}/../${TARGET_PART_PATH}
-    createrepo .
+ #   createrepo .
 
     cd ${BASEDIR}/../
 
@@ -65,15 +65,15 @@ if [ ${RPM_FILE_NUM} -eq 1 ]; then
     cp ${PACKAGE_DIR_PATH}/RPMS/${ARCH_NAME}/mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm  ${BASEDIR}/../${TARGET_PART_PATH}
 
     echo "${ECHO_PREFIX} git add ${TARGET_FILE_PATH}"
-    git add ${TARGET_FILE_PATH}
-    git commit -m "Update RPM package on ${TARGET_YMD_RELEASE}"
+#    git add ${TARGET_FILE_PATH}
+#    git commit -m "Update RPM package on ${TARGET_YMD_RELEASE}"
 
     echo "${ECHO_PREFIX} git add repodata files"
-    git add ${TARGET_PART_PATH}/repodata
-    git commit -m "Add repo data for ${TARGET_FILE_NAME}"
+#    git add ${TARGET_PART_PATH}/repodata
+#    git commit -m "Add repo data for ${TARGET_FILE_NAME}"
 
-    git add RPM-GPG-KEY-NEolgod packages
-    git commit -m "Update RPM package on ${TARGET_YMD_RELEASE}"
+#    git add RPM-GPG-KEY-NEolgod packages
+#    git commit -m "Update RPM package on ${TARGET_YMD_RELEASE}"
 
     git push origin gh-pages
 
