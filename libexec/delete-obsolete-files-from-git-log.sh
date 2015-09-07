@@ -47,7 +47,7 @@ fi
 
 get_rpm_files_num
 WANNA_REMOVE_META_DATA=1
-while [ ${RPM_FILE_NUM} -gt 1 ]
+while [ ${RPM_FILE_NUM} -ge 1 ]
 do
     TARGET_YMD=`ls -ltr ${BASEDIR}/../${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm | egrep -o '\-[0-9]{8}\-[0-9]{1,}\.'| egrep -o '[0-9]{8}' | head -1`
     TARGET_YMD_RELEASE=`ls -ltr ${BASEDIR}/../${TARGET_PART_PATH}/mecab-ipadic-neologd-*.rpm | egrep -o '\-[0-9]{8}\-[0-9]{1,}\.'| egrep -o '[0-9]{8}\-[0-9]{1,}' | head -1`
