@@ -85,7 +85,7 @@ do
     git gc --aggressive --prune=now
 
     echo "${ECHO_PREFIX} git push --force"
-#    git push --force origin gh-pages
+    git push --force origin gh-pages
 
     WANNA_REMOVE_META_DATA=1
     get_rpm_files_num
