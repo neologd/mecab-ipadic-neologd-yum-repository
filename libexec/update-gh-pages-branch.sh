@@ -56,14 +56,14 @@ if [ ${RPM_FILE_NUM} -eq 1 ]; then
         mkdir -p ${BASEDIR}/../${TARGET_PART_PATH}
     fi
 
+    echo "${ECHO_PREFIX} Put mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm to ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}"
+    cp ${PACKAGE_DIR_PATH}/RPMS/${ARCH_NAME}/mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm  ${BASEDIR}/../${TARGET_PART_PATH}
+
     if [ ! -e ${BASEDIR}/../${TARGET_PART_PATH}/repodata ]; then
         cd ${BASEDIR}/../${TARGET_PART_PATH}
         createrepo .
         cd ${BASEDIR}/../
     fi
-
-    echo "${ECHO_PREFIX} Put mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm to ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}"
-    cp ${PACKAGE_DIR_PATH}/RPMS/${ARCH_NAME}/mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm  ${BASEDIR}/../${TARGET_PART_PATH}
 
     echo "${ECHO_PREFIX} git add ${TARGET_FILE_PATH}"
     git add ${TARGET_FILE_PATH}
