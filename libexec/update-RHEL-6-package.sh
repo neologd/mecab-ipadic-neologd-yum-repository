@@ -28,7 +28,7 @@ echo "${ECHO_PREFIX} Update seed data"
 ${BASEDIR}/../../mecab-ipadic-neologd/libexec/copy-dict-seed.sh /home/overlast/git/neologd-seed-maker
 
 echo "${ECHO_PREFIX} Create building directory of mecab-ipadic-NEologd"
-${BASEDIR}/../../mecab-ipadic-neologd/bin/install-mecab-ipadic-neologd --prefix ${TMP_DIR}/mecab-ipadic-neologd-rhel-6 --asuser --forceyes
+${BASEDIR}/../../mecab-ipadic-neologd/bin/install-mecab-ipadic-neologd --prefix ${TMP_DIR}/mecab-ipadic-neologd-rhel-6 --asuser --forceyes --ignore_adjective_std
 
 echo "${ECHO_PREFIX} Move to working directory"
 cd ${BASEDIR}/../../mecab-ipadic-neologd-yum-repository
