@@ -57,7 +57,7 @@ if [ ${RPM_FILE_NUM} -eq 1 ]; then
     fi
 
     echo "${ECHO_PREFIX} Put mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm to ${BASEDIR}/../../mecab-ipadic-neologd-gh-pages/${TARGET_PART_PATH}"
-    cp ${PACKAGE_DIR_PATH}/RPMS/${ARCH_NAME}/mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm  ${BASEDIR}/../${TARGET_PART_PATH}
+#    cp ${PACKAGE_DIR_PATH}/RPMS/${ARCH_NAME}/mecab-ipadic-neologd-${TARGET_YMD}*.${ARCH_NAME}.rpm  ${BASEDIR}/../${TARGET_PART_PATH}
 
     if [ ! -e ${BASEDIR}/../${TARGET_PART_PATH}/repodata ]; then
         cd ${BASEDIR}/../${TARGET_PART_PATH}
@@ -66,8 +66,8 @@ if [ ${RPM_FILE_NUM} -eq 1 ]; then
     fi
 
     echo "${ECHO_PREFIX} git add ${TARGET_FILE_PATH}"
-    git add ${TARGET_FILE_PATH}
-    git commit -m "Update RPM package on ${TARGET_YMD_RELEASE}"
+#    git add ${TARGET_FILE_PATH}
+#    git commit -m "Update RPM package on ${TARGET_YMD_RELEASE}"
 
     echo "${ECHO_PREFIX} git add repodata files"
     git add ${TARGET_PART_PATH}/repodata
